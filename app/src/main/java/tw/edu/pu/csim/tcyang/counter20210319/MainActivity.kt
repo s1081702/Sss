@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() ,View.OnClickListener{
+class MainActivity : AppCompatActivity() ,View.OnClickListener,View.OnLongClickListener{
 
     var counter:Int = 0
 
@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
         txv.text = counter.toString()
 
         txv.setOnClickListener(this)
+        txv.setOnLongClickListener(this)
         btn1.setOnClickListener(this)
         btn2.setOnClickListener(this)
         btn3.setOnClickListener(this)
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
                 txv.text = counter.toString()
             }
         })
+
+        img.setOnLongClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -37,6 +40,17 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
             counter=0
         }
         txv.text = counter.toString()
+    }
+
+    override fun onLongClick(v: View?): Boolean {
+        if(v==txv){
+            counter += 2
+        }
+        else{
+            counter--
+        }
+        txv.text = counter.toString()
+        return true
     }
 
 
